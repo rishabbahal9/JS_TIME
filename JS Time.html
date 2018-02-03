@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>RTime</title>
+		<style>
+			.box
+			{
+				font-family: Sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			Time-><span id="demo" class="box"></span><br>
+			Time Left-><span id="msg" class="box"></span><br>
+			Event-><span id="msg2" class="box"></span>
+		</div>
+		
+		<div class="box">
+			Time-><span id="democ" class="box"></span><br>
+			Time Left-><span id="msgc" class="box"></span><br>
+			Event-><span id="msg2c" class="box"></span>
+		</div>
+		<script>
+			setInterval(update,1000);
+			function update()
+			{
+				//Showing Time
+				var d=new Date();
+				document.getElementById('demo').innerHTML=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+				
+				//Showing Left Time
+				var ps=((d.getHours()*60*60)+(d.getMinutes()*60)+(d.getSeconds()));//Present Seconds
+				var t=seconds_maker(9,21,0)-ps;
+				document.getElementById('msg').innerHTML=parseInt(t/60/60)+" Hours "+parseInt(t/60%60)+"  Minutes "+parseInt(t%60)+" Seconds";
+				
+				//Event after
+				if(ps>seconds_maker(9,21,0))
+				document.getElementById('msg2').innerHTML="Time's Up";
+				
+				
+			}
+			setInterval(update2,1000);
+			function update2()
+			{
+				//Showing Time
+				var d=new Date();
+				document.getElementById('democ').innerHTML=sec_to_time(present_seconds());
+				
+				//Showing Left Time
+				var ps=present_seconds();//Present Seconds
+				var t=seconds_maker(9,25,0)-ps;
+				document.getElementById('msgc').innerHTML=sec_to_time(t);
+				
+				//Event after
+				if(ps>seconds_maker(9,25,0))
+				document.getElementById('msg2c').innerHTML="Time's Up 2";
+				
+				
+			}
+			function seconds_maker(hr,mn,sc)
+			{
+				return ((hr*60*60)+(mn*60)+(sc));
+			}
+			
+			function present_seconds()
+			{
+				var d=new Date();
+				return ((d.getHours()*60*60)+(d.getMinutes()*60)+(d.getSeconds()));
+			}
+			
+			function sec_to_time(t)
+			{
+				//t is seconds
+				return parseInt(t/60/60)+" Hours "+parseInt(t/60%60)+"  Minutes "+parseInt(t%60)+" Seconds";
+			}
+		</script>
+		
+	</body>
+</html>
