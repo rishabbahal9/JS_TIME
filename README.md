@@ -1,2 +1,2 @@
 # JS_TIME
-Javascript time functions
+Javascript time functions automation.
